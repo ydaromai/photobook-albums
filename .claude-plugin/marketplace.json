@@ -1,0 +1,12 @@
+{
+  "name": "mixbook-album",
+  "description": "Claude Code plugin for building Mixbook photo books",
+  "owner": { "name": "mixbook-album contributors" },
+  "plugins": [
+    {
+      "name": "mixbook-album",
+      "source": "./",
+      "description": "Turn a pile of trip photos into a finished Mixbook photo book: curated, laid out, captioned and saved straight into your Mixbook project."
+    }
+  ]
+}

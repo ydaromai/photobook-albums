@@ -1,0 +1,8 @@
+{
+  "name": "mixbook-album",
+  "description": "Turn a pile of trip photos into a finished Mixbook photo book: curated, laid out, captioned and saved straight into your Mixbook project.",
+  "version": "1.0.0",
+  "author": { "name": "mixbook-album contributors" },
+  "license": "MIT",
+  "keywords": ["mixbook", "photo book", "photobook", "album", "photos", "icloud"]
+}

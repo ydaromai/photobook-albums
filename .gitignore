@@ -1,0 +1,12 @@
+# local working data: API captures, test books, images — never commit
+data/
+e2e/
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.HEIC
+*.mov
+*.mp4
+.DS_Store
+__pycache__/
