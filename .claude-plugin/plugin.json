@@ -1,8 +1,8 @@
 {
-  "name": "mixbook-album",
-  "description": "Turn a pile of trip photos into a finished Mixbook photo book: curated, laid out, captioned and saved straight into your Mixbook project.",
-  "version": "1.0.0",
-  "author": { "name": "mixbook-album contributors" },
+  "name": "photobook-albums",
+  "description": "Turn a pile of trip photos into a finished photo book: curated, laid out, captioned and saved straight into your Mixbook (English) or Picabook (Hebrew, right-to-left) project.",
+  "version": "2.0.0",
+  "author": { "name": "photobook-albums contributors" },
   "license": "MIT",
-  "keywords": ["mixbook", "photo book", "photobook", "album", "photos", "icloud"]
+  "keywords": ["mixbook", "picabook", "photobook", "photo-album", "photos", "hebrew", "rtl"]
 }

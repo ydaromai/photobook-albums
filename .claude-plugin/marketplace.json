@@ -1,12 +1,12 @@
 {
-  "name": "mixbook-album",
-  "description": "Claude Code plugin for building Mixbook photo books",
-  "owner": { "name": "mixbook-album contributors" },
+  "name": "photobook-albums",
+  "description": "Claude Code plugin for building Mixbook and Picabook photo books",
+  "owner": { "name": "photobook-albums contributors" },
   "plugins": [
     {
-      "name": "mixbook-album",
+      "name": "photobook-albums",
       "source": "./",
-      "description": "Turn a pile of trip photos into a finished Mixbook photo book: curated, laid out, captioned and saved straight into your Mixbook project."
+      "description": "Two skills: mixbook-album (Mixbook, English, left-to-right) and picabook-album (Picabook, Hebrew, right-to-left)."
     }
   ]
 }
