@@ -7,7 +7,7 @@ A [Claude Code](https://claude.com/claude-code) plugin that turns a pile of trip
 | **mixbook-album** | [Mixbook](https://www.mixbook.com) | English, left-to-right |
 | **picabook-album** | [Picabook](https://www.picabook.co.il) | Hebrew, right-to-left (English place names, Hebrew lines) |
 
-You tell Claude which photos to use (an iCloud Photos album, a folder, or photos already in the project). Claude then:
+You tell Claude which photos to use: a Google Photos album, a folder on your computer or drive, an iCloud Photos album, or photos already in the project. Claude then:
 
 - **curates** them: removes duplicates and blurry shots, keeps at least one photo of every place and moment, and picks the strongest images for full pages and two-page panoramas;
 - **places undated photos** (WhatsApp copies, scans) at the right moment by looking at what's in them;
@@ -20,14 +20,14 @@ You review it in the editor, change anything you like, and order it there yourse
 
 ## What you need
 
-- A **Mac** (for iCloud Photos albums; folders work too).
+- A **Mac** is recommended (iCloud Photos albums need one). Google Photos and folders also work on Windows, but that hasn't been tested yet.
 - **Claude Code** (CLI or desktop app) and the **Claude in Chrome** extension, signed in to claude.ai with the **same account** as Claude Code.
 - A **Mixbook** or **Picabook** account, signed in in that Chrome.
 - **Python 3** with a few image libraries:
   ```bash
   python3 -m pip install --user pillow numpy opencv-python
   ```
-  If that is refused ("externally managed environment"), use a virtual environment:
+  (On Windows also `pillow-heif`, for iPhone HEIC photos.) If that is refused ("externally managed environment"), use a virtual environment:
   ```bash
   python3 -m venv ~/.venvs/photobook && ~/.venvs/photobook/bin/pip install pillow numpy opencv-python
   ```
@@ -53,6 +53,10 @@ In Claude Code:
    > Make a Mixbook album from my iCloud album "Japan 2027".
 
    > Fill my open Picabook project with the photos in ~/Pictures/Galil — Hebrew captions.
+
+   > Make a Mixbook album from the Google Photos album "Tasmania 2027" — I downloaded it to ~/Downloads/Tasmania.
+
+   **Google Photos:** open the album on photos.google.com, click ⋮ → **Download all**, unzip it, and tell Claude the folder. Dates and places come with the photos. You never sign in to Google through Claude.
 3. Claude asks a few short questions (who is in the photos, places and dates, names on captions or not, cover title, page budget), then does the work. Uploading and curating a few hundred photos takes a while.
 4. Claude shows you the cover and some spreads. Say **go** and it saves the book to your project.
 5. Review it in the editor, tweak anything, and order when you're happy.

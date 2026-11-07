@@ -37,10 +37,11 @@ await fetch('http://127.0.0.1:8765/content.json',{method:'POST',body:t});
    then `BOOK_DIR=<dir> python3 ${CLAUDE_SKILL_DIR}/scripts/make_profile.py` → prints name, product, size, page count, existing content; **confirm it is the right project**. It writes `profile.json` (page geometry from `intended_product`, max pages) and the restore copy.
 
 ## Step 2 — photos into the project
-- **Already in Mixbook / Google Photos**: the user adds them in the editor (Photos → Google Photos). Go to step 3.
+- **Already in Mixbook** (also photos the user added with the editor's own Google Photos import): go to step 3. Photos without a camera date come out undated and are placed by content.
 - **iCloud album**: `osascript ${CLAUDE_SKILL_DIR}/scripts/album_meta.applescript "<album>" > <BOOK_DIR>/meta.tsv` (columns: id, filename, date, lat, lon, w, h); stills only: `awk -F'\t' 'tolower($2) !~ /\.(mov|mp4|m4v)$/ {print $1}' <BOOK_DIR>/meta.tsv > <BOOK_DIR>/ids.txt`; export: `osascript ${CLAUDE_SKILL_DIR}/scripts/export_ids.applescript <BOOK_DIR>/ids.txt <BOOK_DIR>/export` (run in background; iCloud downloads are slow — wait until the file count in `export/` stops growing).
-- **Folder**: use it as the source (read-only).
-- Prepare: `python3 ${CLAUDE_SKILL_DIR}/scripts/prepare_upload.py <source_dir> <BOOK_DIR>` → resized copies in `<BOOK_DIR>/up/` with safe unique names + `up/list.json` + `upload_map.json`; videos skipped.
+- **Google Photos** (recommended route, keeps dates and places): ask the user to open the album on photos.google.com → ⋮ → **Download all**, and to unzip the download (a Google Takeout export works too). Use the unzipped folder as the source; subfolders are fine. Do not sign in to Google for them.
+- **Folder on the computer** (including an external drive): use it as the source, read-only; subfolders are fine.
+- Prepare: `python3 ${CLAUDE_SKILL_DIR}/scripts/prepare_upload.py <source_dir> <BOOK_DIR>` (works on Mac, Windows and Linux; HEIC off-Mac needs `pip install pillow-heif`) → resized copies in `<BOOK_DIR>/up/` with safe unique names + `up/list.json` + `upload_map.json`; videos skipped.
 - Serve them: `python3 -I ${CLAUDE_SKILL_DIR}/scripts/helper_server.py <BOOK_DIR>/up 8766` (background).
 - Upload in the editor: open **Photos → Add more photos** (the file input only exists there), then per batch of 50 (set `A`):
 ```js

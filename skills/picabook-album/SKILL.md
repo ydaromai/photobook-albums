@@ -25,7 +25,7 @@ Scripts: `${CLAUDE_SKILL_DIR}/scripts/`; multi-agent workflow templates: `${CLAU
 - After saving, **reload the editor tab with force** — a stale tab that saves later would overwrite the book.
 
 ## Step 0 — interview
-Which photos (iCloud album — My Album, not a Shared Album —, folder, or already in the project); occasion, places and dates; who is in the photos, how to recognise them, names allowed?; focus people; caption language (Hebrew lines by default); cover title/subtitle; page budget (Picabook page counts come in steps of 4, with a product minimum/maximum).
+Which photos (iCloud album — My Album, not a Shared Album —, Google Photos, a folder on the computer or drive, or already in the project); occasion, places and dates; who is in the photos, how to recognise them, names allowed?; focus people; caption language (Hebrew lines by default); cover title/subtitle; page budget (Picabook page counts come in steps of 4, with a product minimum/maximum).
 
 ## Step 1 — project
 - New project: `https://www.picabook.co.il/HE-IL/Albums.asp?type=0` → album type (e.g. Picabook | פנורמי 29x22), cover (כריכה קשה), **פתיחה עברית** (Hebrew opening), design **עיצוב עצמי → קלאסי**, project name (letters/digits/spaces only — `&` is rejected). The wizard summary may say «פנורמי יהלום» even for regular print — trust the hidden `print` select (`הדפסה רגילה`).
@@ -33,6 +33,8 @@ Which photos (iCloud album — My Album, not a Shared Album —, folder, or alre
 
 ## Step 2 — photos into the project
 - iCloud: `osascript ${CLAUDE_SKILL_DIR}/scripts/album_meta.applescript "<album>" > <BOOK_DIR>/meta.tsv`; stills only `awk -F'\t' 'tolower($2) !~ /\.(mov|mp4|m4v)$/ {print $1}' <BOOK_DIR>/meta.tsv > <BOOK_DIR>/ids.txt`; `osascript ${CLAUDE_SKILL_DIR}/scripts/export_ids.applescript <BOOK_DIR>/ids.txt <BOOK_DIR>/export` (background; wait until the file count stops growing).
+- **Google Photos** (recommended route, keeps dates and places): ask the user to open the album on photos.google.com → ⋮ → **Download all**, and to unzip the download (a Google Takeout export works too). Use the unzipped folder as the source; subfolders are fine. Do not sign in to Google for them.
+- **Folder on the computer** (including an external drive): use it as the source, read-only; subfolders are fine.
 - `python3 ${CLAUDE_SKILL_DIR}/scripts/prepare_upload.py <source_dir> <BOOK_DIR>` → `<BOOK_DIR>/up/` (resized, EXIF kept, safe names) and serve it: `ORIGIN=https://editor.picabook.co.il python3 -I ${CLAUDE_SKILL_DIR}/scripts/helper_server.py <BOOK_DIR>/up 8766`.
 - In the editor click **הוספת תמונות** (add photos — the file input only exists on that screen), then per batch of 50 (set `A`):
 ```js
